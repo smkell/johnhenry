@@ -1,0 +1,1 @@
+Chef::Log.info("********** Preparing to install and configure elasticsearch! **********")
