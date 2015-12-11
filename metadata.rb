@@ -1,5 +1,5 @@
 name "johnhenry"
-version "0.1.1"
+version "0.1.2"
 
 # For Elasticsearch nodes
 depends "java", "~> 1.7"
