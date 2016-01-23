@@ -1,13 +1,45 @@
 ---
-driver:
-  name: vagrant
-
 provisioner:
-  name: chef_zero
+  name: chef_zero_scheduled_task
+
+transport:
+  ssh_key: learnchef.pem
 
 platforms:
-  - name: ubuntu-14.04
-  - name: centos-7.1
+  - name: vagrant-ubuntu-14.04
+    driver:
+      name: vagrant
+  - name: vagrant-centos-7.1
+    driver:
+      name: vagrant
+  - name: ec2-ubuntu-14.04
+    transport:
+      username: ubuntu
+      ssh_key: learnchef.pem
+    driver:
+      name: ec2
+      aws_ssh_key_id: learnchef
+      region: us-east-1
+      availability_zone: a
+      subnet_id: subnet-bd2ad3cb
+      instance_type: t2.micro
+      security_group_ids: ['sg-68b6dd11']
+      retryable_tries: 120
+      image_id: ami-d05e75b8
+  - name: ec2-rhel-7.2
+    transport:
+      ssh_key: learnchef.pem
+      username: ec2-user
+    driver:
+      name: ec2
+      aws_ssh_key_id: learnchef
+      region: us-east-1
+      availability_zone: a
+      subnet_id: subnet-bd2ad3cb
+      instance_type: t2.micro
+      security_group_ids: ['sg-68b6dd11']
+      retryable_tries: 120
+      image_id: ami-2051294a
 
 suites:
   - name: default
